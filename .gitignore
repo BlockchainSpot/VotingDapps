@@ -1,4 +1,4 @@
 *node_modules*
 *build*
 truffle-config.js
-/contract/artificts/
+*contract/artificts/*
