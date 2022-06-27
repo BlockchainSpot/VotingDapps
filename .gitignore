@@ -3,3 +3,4 @@
 truffle-config.js
 *contracts/artifacts/*
 *migrations*
+.env
