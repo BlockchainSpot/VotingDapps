@@ -13,11 +13,12 @@ contract("Voting", function (accounts) {
 
   context("Register Section ", function() {
 
-    // Prérequis
+    // Prérequis :
+
     beforeEach(async function () {
       Voting = await instance.new({from: owner});
     })
-    
+
 
       it('Success : add voter addr1 from owner', async function () {
         await expectRevert(Voting.addVoter(add1, {from: add1}),
@@ -35,8 +36,12 @@ contract("Voting", function (accounts) {
         let VoterRegisteredBool = await Voting.getVoter(add1, {from: add1})
         expect(VoterRegisteredBool.isRegistered).to.equal(true);
       });
-    })     
+    })   
+
   context("Proposal Section", function() {
+
+    // Prérequis :
+
     beforeEach(async function () {
         Voting = await instance.new({from: owner});
         await Voting.addVoter(add1, {from: owner})
@@ -77,7 +82,7 @@ contract("Voting", function (accounts) {
         expectEvent(receipt, "ProposalRegistered", {proposalId: new BN(ID)});
       })
 
-      it("", async function () {
+      it("Success : ", async function () {
         await Voting.startProposalsRegistering({from: owner})
         await Voting.addProposal("proposaladd1", {from: add1})
         const ID = 1;
@@ -86,7 +91,9 @@ contract("Voting", function (accounts) {
   })
   
 
-  context("Tallying Section", function() {
+  context("tallyVotes Section", function() {
+
+    // Prérequis :
 
     beforeEach(async function () {
       Voting = await instance.new({from: owner});
@@ -140,7 +147,7 @@ contract("Voting", function (accounts) {
         Voting = await instance.new({from: owner});
     })
 
-   
+    // Prérequis :
 
     it("start proposal registering", async() => {
         let status = await Voting.workflowStatus.call();
